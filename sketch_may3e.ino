@@ -7,37 +7,33 @@
 #include <SPI.h>
 #include <MFRC522.h>
 
-#define SS_PIN  21  // ESP32 pin GIOP5 
-#define RST_PIN 22 // ESP32 pin GIOP27 
+#define SS_PIN  21  // ESP32 pin GPIO21
+#define RST_PIN 22 // ESP32 pin GPIO22 
 
 MFRC522 mfrc522(SS_PIN, RST_PIN);
 
-// Replace with your network credentials
+// network credentials
 const char* ssid = "Narzo";
 const char* password = "narcotics";
 
-// Initialize Telegram BOT
-#define BOTtoken "5995373119:AAH_Z750KAxMXxUifsoeOrAGX5E1Ti5jtX4"  // your Bot Token (Get from Botfather)
+// Initializing Telegram BOT
+#define BOTtoken "5995373119:AAH_Z750KAxMXxUifsoeOrAGX5E1Ti5jtX4"  // Bot Token (Recieved from Botfather)
 
 // Use @myidbot to find out the chat ID of an individual or a group
-// Also note that you need to click "start" on a bot before it can
-// message you
 #define CHAT_ID "1345756349"
-
 
 WiFiClientSecure client;
 UniversalTelegramBot bot(BOTtoken, client);
 
 LiquidCrystal lcd(4, 13, 5, 17, 16, 15);
 
-#define MOTION_SENSOR_PIN  14 // ESP32 pin GIOP17 connected to motion sensor's pin
+#define MOTION_SENSOR_PIN  14 // ESP32 pin GIOP14 connected to motion sensor's pin
 #define SERVO_PIN          26 // ESP32 pin GIOP26 connected to servo motor's pin
 
-Servo servo; // create servo object to control a servo
+Servo servo; // creating servo object to control a servo
 
 // variables will change:
 int angle = 120;          // the current angle of servo motor
-int lastMotionState;    // the previous state of motion sensor
 int currentMotionState; // the current state of motion sensor
 
 int Ledyellow = 25;
